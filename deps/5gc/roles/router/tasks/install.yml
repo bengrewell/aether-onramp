@@ -2,6 +2,34 @@
 
 # TODO: running on master node for now (fix to run on multiple nodes)
 
+# Detect whether the managed node can reach upstream apt archives so
+# later tasks with `update_cache` don't hard-fail on airgapped nodes.
+# `set_fact` is host-scoped, so each host probes and caches its own
+# result. Operators can set `airgapped: true` (or false) in inventory
+# vars to skip the probe entirely. Only master nodes run the apt tasks
+# later in this role, so only master nodes probe — avoids a needless
+# 5s timeout on every other host in the play.
+- name: probe upstream apt archive reachability
+  ansible.builtin.uri:
+    url: "{{ airgap_probe_url | default('http://archive.ubuntu.com/ubuntu/dists/' + ansible_distribution_release + '/Release', true) }}"
+    method: HEAD
+    timeout: 5
+  register: _apt_probe
+  failed_when: false
+  changed_when: false
+  when:
+    - inventory_hostname in groups['master_nodes']
+    - airgapped is not defined
+
+# Any HTTP 2xx/3xx response is treated as online (handles redirects
+# and alternate success codes that a mirror or proxy might return).
+- name: set airgapped fact
+  ansible.builtin.set_fact:
+    airgapped: "{{ _apt_probe.status is not defined or not (200 <= (_apt_probe.status | int) < 400) }}"
+  when:
+    - inventory_hostname in groups['master_nodes']
+    - airgapped is not defined
+
 - set_fact:
     systemd_network_dir: /etc/systemd/network
     systemd_system_dir: /etc/systemd/system
@@ -417,7 +445,7 @@
   apt:
     name: iptables-persistent
     state: present
-    update_cache: yes
+    update_cache: "{{ not (airgapped | bool) }}"
   when: inventory_hostname in groups['master_nodes']
   become: true
   environment: "{{ proxy_env | combine({'DEBIAN_FRONTEND': 'noninteractive'}) }}"

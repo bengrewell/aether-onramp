@@ -4,6 +4,21 @@ proxy:
   https_proxy: ""
   no_proxy: "localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,10.42.0.0/16,10.43.0.0/16,.svc,.svc.cluster.local,.cluster.local"
 
+# Airgap behaviour for `apt: update_cache` tasks.
+#
+# Roles that touch apt (5gc/router, the docker installs under
+# srsran/ocudu/oai/n3iwf/gnbsim/oscric, ueransim/simulator,
+# amp/monitor, gnbsim/router, oai/router) probe upstream apt archive
+# reachability once per host and skip `update_cache` when the host
+# can't reach the archive. Operators can short-circuit the probe by
+# setting `airgapped` directly here or in inventory vars; or point
+# `airgap_probe_url` at an internal mirror so a site with a local
+# apt archive but no upstream egress reports as online.
+#
+# airgapped: true              # force airgap behaviour (no probe)
+# airgapped: false             # force online behaviour (no probe)
+# airgap_probe_url: "http://mirror.internal/ubuntu/dists/{{ ansible_distribution_release }}/Release"
+
 k8s:
   rke2:
     version: v1.24.17+rke2r1
