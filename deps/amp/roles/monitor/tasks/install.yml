@@ -1,10 +1,25 @@
 ---
 
+# kubernetes.core modules used later in this role require the python
+# `kubernetes` client library, which is NOT pulled in by a stock apt
+# install of ansible on Ubuntu. Install it up-front. `airgapped` is
+# honoured for update_cache (see the companion airgap PR); when
+# unset, the default of false preserves current online behaviour.
+- name: install kubernetes.core python prerequisite (python3-kubernetes)
+  ansible.builtin.apt:
+    name: python3-kubernetes
+    state: present
+    update_cache: "{{ not (airgapped | default(false) | bool) }}"
+  when: inventory_hostname in groups['master_nodes']
+  become: true
+
 #TODO: add in core code
 - name: update cache
   apt:
     update_cache: yes
-  when: inventory_hostname in groups['master_nodes']
+  when:
+    - inventory_hostname in groups['master_nodes']
+    - not (airgapped | default(false) | bool)
   become: true
 
 - name: install software-properties-common package
