@@ -1,5 +1,6 @@
 ---
 
+<<<<<<< HEAD
 # Resolve `core.data_iface` from the default-route interface when it
 # is unset or left at one of the stock defaults. See the router
 # role's install.yml for the full rationale.
@@ -26,6 +27,22 @@
     - (core.data_iface is not defined)
       or (core.data_iface in ['', 'data'])
       or (core.data_iface not in (ansible_interfaces | default([])))
+=======
+# kubernetes.core modules (helm, k8s, k8s_info, etc.) require the python
+# `kubernetes` client library, which is NOT pulled in by a stock apt
+# install of ansible on Ubuntu. Install it up-front so later tasks in
+# this role don't fail with "Failed to import the required Python
+# library (kubernetes)". `airgapped` is honoured for update_cache (see
+# the companion airgap PR); when unset, the default of false preserves
+# current online behaviour.
+- name: install kubernetes.core python prerequisite (python3-kubernetes)
+  ansible.builtin.apt:
+    name: python3-kubernetes
+    state: present
+    update_cache: "{{ not (airgapped | default(false) | bool) }}"
+  when: inventory_hostname in groups['master_nodes']
+  become: true
+>>>>>>> python3-kubernetes-prereq
 
 - name: check configured VF resources for built-in UPF
   block:

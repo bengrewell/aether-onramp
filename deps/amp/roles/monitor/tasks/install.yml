@@ -26,6 +26,19 @@
     - inventory_hostname in groups['master_nodes']
     - airgapped is not defined
 
+# kubernetes.core modules used later in this role require the python
+# `kubernetes` client library, which is NOT pulled in by a stock apt
+# install of ansible on Ubuntu. Install it up-front. `airgapped` is
+# now always defined by the probe above, so the bool coercion is
+# unconditional.
+- name: install kubernetes.core python prerequisite (python3-kubernetes)
+  ansible.builtin.apt:
+    name: python3-kubernetes
+    state: present
+    update_cache: "{{ not (airgapped | bool) }}"
+  when: inventory_hostname in groups['master_nodes']
+  become: true
+
 #TODO: add in core code
 - name: update cache
   apt:
