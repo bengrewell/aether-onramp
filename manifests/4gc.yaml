@@ -1,0 +1,79 @@
+name: 4gc
+description: 4G core network
+repo_url: https://github.com/opennetworkinglab/aether-onramp
+docs_url: https://docs.aetherproject.org/master/onramp/start.html
+status: active
+ui_visible: true
+group: core
+vars_key: core
+install_tier: 1
+actions:
+  - name: install
+    description: Deploy 4G core
+    target: aether-4gc-install
+  - name: uninstall
+    description: Remove 4G core
+    target: aether-4gc-uninstall
+  - name: reset
+    description: Reset 4G core state
+    target: aether-4gc-reset
+dependencies:
+  requires: [k8s]
+  required_by: []
+probe:
+  type: namespace_pods
+  namespace: aether-4gc
+schema:
+  type: object
+  properties:
+    standalone:
+      type: boolean
+      description: Run core in standalone mode
+    data_iface:
+      type: string
+      description: Data-plane network interface used for core traffic
+    values_file:
+      type: string
+      description: Helm values file path for the 4G core deployment
+    ran_subnet:
+      type: string
+      description: eNB-facing subnet in CIDR notation
+    helm:
+      type: object
+      description: Helm chart reference for the shared SD-Core charts
+      properties:
+        chart_ref:
+          type: string
+          description: Chart registry reference or local chart path
+        chart_version:
+          type: string
+          description: Chart version constraint
+    upf:
+      type: object
+      description: User Plane Function configuration
+      properties:
+        access_subnet:
+          type: string
+          description: Access subnet and gateway
+        core_subnet:
+          type: string
+          description: Core subnet and gateway
+        mode:
+          type: string
+          description: UPF operating mode
+          enum: [af_packet, dpdk]
+    amf:
+      type: object
+      description: Optional AMF settings when sharing mixed core config
+      properties:
+        ip:
+          type: string
+          description: AMF N2 IP address
+    mme:
+      type: object
+      description: 4G MME connectivity settings
+      properties:
+        ip:
+          type: string
+          description: MME S1-MME IP address
+
