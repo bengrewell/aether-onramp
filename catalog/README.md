@@ -1,12 +1,13 @@
-# Aether OnRamp Component Manifests
+# Aether OnRamp Component Catalog
 
-This directory contains YAML manifests that describe the deployable Aether
-OnRamp components and the shape of the corresponding `vars/main.yml` sections.
+This directory contains YAML catalog entries that describe the deployable
+Aether OnRamp components and the shape of the corresponding `vars/main.yml`
+sections.
 
 These files are intended to be consumed by external tooling such as
 `aether-ops`. OnRamp itself does not currently load them at runtime.
 
-Each manifest can declare:
+Each catalog entry can declare:
 
 - Component metadata and documentation links
 - Available actions and their Makefile targets
