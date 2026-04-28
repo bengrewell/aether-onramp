@@ -25,7 +25,7 @@ dependencies:
   required_by: []
 probe:
   type: docker_container
-  container: gnbsim
+  container: gnbsim-1
 schema:
   type: object
   properties:

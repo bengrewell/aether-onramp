@@ -27,8 +27,7 @@ dependencies:
   requires: [5gc]
   required_by: []
 probe:
-  type: helm_release
-  namespace: ueransim
+  type: none
 schema:
   type: object
   properties:

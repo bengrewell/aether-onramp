@@ -18,7 +18,7 @@ actions:
     target: aether-k8s-uninstall
 dependencies:
   requires: []
-  required_by: [5gc, 4gc, amp, sdran, oscric]
+  required_by: [5gc, 4gc, amp, sdran]
 probe:
   type: kubectl_nodes
 schema:

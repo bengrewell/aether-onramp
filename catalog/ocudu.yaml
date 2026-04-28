@@ -28,7 +28,7 @@ dependencies:
   required_by: []
 probe:
   type: docker_container
-  container: ocudu
+  container: ocudu-gnb
 schema:
   type: object
   properties:

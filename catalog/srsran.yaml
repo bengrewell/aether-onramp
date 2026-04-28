@@ -28,7 +28,7 @@ dependencies:
   required_by: []
 probe:
   type: docker_container
-  container: srsran
+  container: srsran-gnb
 schema:
   type: object
   properties:

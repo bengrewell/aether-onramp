@@ -17,11 +17,11 @@ actions:
     description: Remove OSC near-RT RIC
     target: aether-oscric-ric-uninstall
 dependencies:
-  requires: [k8s]
+  requires: []
   required_by: []
 probe:
-  type: helm_release
-  namespace: ricplt
+  type: docker_container
+  container: python_xapp_runner
 schema:
   type: object
   properties:

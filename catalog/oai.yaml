@@ -28,7 +28,7 @@ dependencies:
   required_by: []
 probe:
   type: docker_container
-  container: oai
+  container: oai-gnb
 schema:
   type: object
   properties:
