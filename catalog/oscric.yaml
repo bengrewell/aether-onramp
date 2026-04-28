@@ -1,3 +1,5 @@
+apiVersion: onramp.aetherproject.org/v1
+kind: Component
 name: oscric
 description: O-RAN SC near-RT RIC
 repo_url: https://github.com/opennetworkinglab/aether-onramp

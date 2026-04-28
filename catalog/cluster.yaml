@@ -1,3 +1,5 @@
+apiVersion: onramp.aetherproject.org/v1
+kind: Component
 name: cluster
 description: Cluster-level operations
 repo_url: https://github.com/opennetworkinglab/aether-onramp
@@ -5,7 +7,6 @@ docs_url: https://docs.aetherproject.org/master/onramp/start.html
 status: active
 ui_visible: false
 group: meta
-vars_key: ""
 install_tier: 4
 actions:
   - name: pingall

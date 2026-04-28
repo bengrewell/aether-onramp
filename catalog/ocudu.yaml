@@ -1,3 +1,5 @@
+apiVersion: onramp.aetherproject.org/v1
+kind: Component
 name: ocudu
 description: O-CU-DU RAN
 repo_url: https://github.com/opennetworkinglab/aether-onramp

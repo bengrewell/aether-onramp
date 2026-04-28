@@ -1,3 +1,5 @@
+apiVersion: onramp.aetherproject.org/v1
+kind: Component
 name: srsran
 description: srsRAN Project RAN
 repo_url: https://github.com/opennetworkinglab/aether-onramp

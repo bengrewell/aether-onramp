@@ -1,3 +1,5 @@
+apiVersion: onramp.aetherproject.org/v1
+kind: Component
 name: n3iwf
 description: Non-3GPP Interworking Function
 repo_url: https://github.com/opennetworkinglab/aether-onramp
