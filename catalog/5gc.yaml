@@ -31,6 +31,9 @@ schema:
     standalone:
       type: boolean
       description: Run SD-Core in standalone mode instead of under ROC control
+    closed_loop:
+      type: boolean
+      description: Enable SD-Core closed-loop control plane behavior
     data_iface:
       type: string
       description: Data-plane network interface used for UPF traffic
@@ -69,7 +72,7 @@ schema:
           enum: [af_packet, dpdk]
         multihop_gnb:
           type: boolean
-          description: Use multi-hop gNB routing semantics
+          description: When true, the access subnet shares data_iface instead of using a separate RAN-facing interface
         helm:
           type: object
           description: Helm chart reference for the optional standalone UPF
@@ -127,11 +130,4 @@ schema:
         ip:
           type: string
           description: AMF N2 IP address
-    mme:
-      type: object
-      description: MME connectivity settings used for mixed 4G/5G scenarios
-      properties:
-        ip:
-          type: string
-          description: MME S1-MME IP address
 

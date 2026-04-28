@@ -60,22 +60,17 @@ schema:
         core_subnet:
           type: string
           description: Core subnet and gateway
-        mode:
-          type: string
-          description: UPF operating mode
-          enum: [af_packet, dpdk]
-    amf:
-      type: object
-      description: Optional AMF settings when sharing mixed core config
-      properties:
-        ip:
-          type: string
-          description: AMF N2 IP address
-    mme:
-      type: object
-      description: 4G MME connectivity settings
-      properties:
-        ip:
-          type: string
-          description: MME S1-MME IP address
+        default_upf:
+          type: object
+          description: Default UPF instance settings consumed by the router role
+          properties:
+            ip:
+              type: object
+              properties:
+                core:
+                  type: string
+                  description: UPF core-side IP, used as gateway for the UE pool
+            ue_ip_pool:
+              type: string
+              description: UE address pool in CIDR notation
 
