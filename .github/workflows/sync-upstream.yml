@@ -1,0 +1,28 @@
+name: Sync fork main with upstream
+
+# Keeps `bengrewell/aether-onramp:main` fast-forwarded to
+# `opennetworkinglab/aether-onramp:main` so feature branches that
+# rebase off this fork pick up upstream changes without manual
+# intervention. Failures here are signal — they mean the fork's
+# main has diverged (e.g. someone committed directly to it), in
+# which case `gh repo sync` refuses rather than silently
+# overwriting work.
+
+on:
+  schedule:
+    - cron: '15 12 * * *'   # daily at 12:15 UTC (~5am Pacific)
+  workflow_dispatch:        # also runnable on demand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync main from opennetworkinglab/aether-onramp
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # `gh repo sync` is fast-forward-only by default and uses
+        # the GitHub merge-upstream API — no local checkout needed.
+        run: gh repo sync ${{ github.repository }} -b main --source opennetworkinglab/aether-onramp
