@@ -1,0 +1,7 @@
+---
+# Seconds Ansible waits for the host to come back after the early DPDK reboot
+# (realtime kernel + boot-time isolcpus/hugepage settings). The role defaults
+# to 300s. Hosts with large 1 GB hugepage reservations or a slow PREEMPT_RT
+# first boot can take longer and time out even though the reboot itself
+# succeeded; raise this for them via group_vars, host_vars, or -e.
+dpdk_reboot_timeout: 300
