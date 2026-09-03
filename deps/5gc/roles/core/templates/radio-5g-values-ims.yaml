@@ -38,7 +38,21 @@ omec-control-plane:
     persistence:
       enabled: false
     architecture: replicaset
-    replicaCount: 2
+    # Override core.mongodb.replicaCount/resources (e.g., from CI) to shrink the
+    # footprint on constrained runners; when unset this template falls back to 2.
+    replicaCount: {{ core.get('mongodb', {}).get('replicaCount', 2) }}
+{% set mdb_requests = core.get('mongodb', {}).get('resources', {}).get('requests', {}) %}
+{% set mdb_limits = core.get('mongodb', {}).get('resources', {}).get('limits', {}) %}
+{% if mdb_requests.get('cpu') and mdb_requests.get('memory') and mdb_limits.get('cpu') and mdb_limits.get('memory') %}
+    resourcesPreset: "none"
+    resources:
+      requests:
+        cpu: {{ mdb_requests.cpu }}
+        memory: {{ mdb_requests.memory }}
+      limits:
+        cpu: {{ mdb_limits.cpu }}
+        memory: {{ mdb_limits.memory }}
+{% endif %}
     # Enable nodeSelector if needed to control where to deploy the mongodb instances
     # nodeSelector:
     #   node-role.aetherproject.org/5gc: "true"
