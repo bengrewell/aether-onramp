@@ -1,7 +1,7 @@
 ocudu:
   docker:
     container:
-      gnb_image: aetherproject/ocudu:rel-0.7.0
+      gnb_image: aetherproject/ocudu:rel-1.0.0
     network:
       name: host
     preflight:
@@ -10,9 +10,9 @@ ocudu:
       # Tiny image used only to read `nproc` inside Docker. The airgap
       # bundle tool packages this dependency automatically; override
       # only if you want to point at an image already on the host.
-      probe_image: "ghcr.io/omec-project/pod-init:rel-1.2.2"
+      probe_image: "ghcr.io/omec-project/pod-init:rel-1.2.3"
   simulation: true
 
 core:
   amf:
-    ip: "172.16.248.6"
+    ip: "10.76.28.113"

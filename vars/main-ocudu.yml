@@ -10,7 +10,7 @@ airgapped:
 
 k8s:
   rke2:
-    version: v1.35.3+rke2r3
+    version: v1.36.4+rke2r1
     config:
       token: aether-k8s-rke2
       port: 9345
@@ -29,7 +29,7 @@ core:
   helm:
     local_charts: false      # set chart_ref to local path name if true
     chart_ref: oci://ghcr.io/omec-project/sd-core
-    chart_version: 4.1.0
+    chart_version: 4.2.3
   upf:
     access_subnet: "192.168.252.1/24"  # access subnet & gateway
     core_subnet: "192.168.250.1/24"  # core subnet & gateway
@@ -46,16 +46,24 @@ core:
 ocudu:
   docker:
     container:
-      gnb_image: aetherproject/ocudu:rel-0.8.2
-      ue_image: aetherproject/srsran-ue:rel-0.8.2
+      gnb_image: aetherproject/ocudu:rel-1.0.0
+      ue_image: aetherproject/srsran-ue:rel-1.0.0
     network:
       name: host
   simulation: true
   servers:
     0:
-      gnb_ip: "10.76.28.115"            # Host interface used for the gNB
-      gnb_conf: gnb_zmq.yaml            # deps/ocudu/roles/gNB/templates/
-      ue_conf: ue_zmq.conf              # deps/ocudu/roles/uEsimulator/templates/
+      gnb_ip: "10.76.28.115"             # Host interface used for the gNB
+      gnb_conf: gnb_zmq.yaml             # deps/ocudu/roles/gNB/templates/; use gnb_dpdk_benetel.yaml for DPDK+OFH
+      ue_conf: ue_zmq.conf               # deps/ocudu/roles/uEsimulator/templates/
+      dpdk:
+        enabled: false                   # set true to enable DPDK fronthaul (Benetel O-RU) on this OCUDU node
+        hugepages: 2                     # number of 1 GB hugepages to pre-allocate on this host
+        pf_iface: "enp81s0f3np3"         # Fronthaul PF interface used to create VF 0 on the OCUDU host
+        vf_bdf: "0000:51:19.0"
+        du_mac_addr: "00:33:22:33:00:11"
+        ru_mac_addr: "70:b3:d5:e1:5e:7e" # Benetel RU fronthaul port MAC
+        isolated_cpus: "3-15"            # CPU range to isolate for DPDK
 
 amp:
   roc_models: "deps/amp/roles/roc-load/templates/roc-5g-models.json"
@@ -84,9 +92,9 @@ amp:
   monitor:
     helm:
       chart_ref: rancher/rancher-monitoring
-      chart_version: 108.0.4+up77.9.1-rancher.14
+      chart_version: 110.0.1+up80.9.1-rancher.19
 
   monitor_crd:
     helm:
       chart_ref: rancher/rancher-monitoring-crd
-      chart_version: 108.0.4+up77.9.1-rancher.14
+      chart_version: 110.0.1+up80.9.1-rancher.19
