@@ -9,7 +9,7 @@ cu_cp:
     supported_tracking_areas:
       - tac: 1
         plmn_list:
-          - plmn: "20893"
+          - plmn: "00101"
             tai_slice_support_list:
               - sst: 1
 
@@ -28,7 +28,7 @@ cell_cfg:
   band: 78                          # The NR band.
   channel_bandwidth_MHz: 80         # Bandwith in MHz. Number of PRBs will be automatically derived.
   common_scs: 30                    # Subcarrier spacing in kHz used for data.
-  plmn: "20893"                     # PLMN broadcasted by the gNB.
+  plmn: "00101"                     # PLMN broadcasted by the gNB.
   tac: 1                            # Tracking area code (needs to match the core configuration).
   pci: 1
 
