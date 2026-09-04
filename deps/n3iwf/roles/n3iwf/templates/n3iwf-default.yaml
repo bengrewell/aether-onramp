@@ -6,16 +6,16 @@ configuration:
   n3iwfInformation:
     globalN3iwfId:
       plmnId:
-        mcc: 208
-        mnc: 93
+        mcc: "001"
+        mnc: "01"
       n3iwfId: {{ n3iwf_id | int }}
     name: aether_n3iwf
     supportedTaList:
       - tac: 1
         broadcastPlmnList:
           - plmnId:
-              mcc: 208
-              mnc: 93
+              mcc: "001"
+              mnc: "01"
             taiSliceSupportList:
               - snssai:
                   sst: 1

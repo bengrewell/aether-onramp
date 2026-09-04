@@ -7,8 +7,8 @@
                 "display-name": "Aether Site",
                 "site-id": "site-1",
                 "imsi-definition": {
-                    "mcc": "208",
-                    "mnc": "93",
+                    "mcc": "001",
+                    "mnc": "01",
                     "enterprise": 1,
                     "format": "CCCNNEESSSSSSSS"
                 },
@@ -48,27 +48,27 @@
                     {
                         "sim-id": "sim-1",
                         "display-name": "SIM 1",
-                        "imsi": "208930100007500"
+                        "imsi": "001010100007500"
                     },
                     {
                         "sim-id": "sim-2",
                         "display-name": "SIM 2",
-                        "imsi": "208930100007501"
+                        "imsi": "001010100007501"
                     },
                     {
                         "sim-id": "sim-3",
                         "display-name": "SIM 3",
-                        "imsi": "208930100007502"
+                        "imsi": "001010100007502"
                     },
                     {
                         "sim-id": "sim-4",
                         "display-name": "SIM 4",
-                        "imsi": "208930100007503"
+                        "imsi": "001010100007503"
                     },
                     {
                         "sim-id": "sim-5",
                         "display-name": "SIM 5",
-                        "imsi": "208930100007504"
+                        "imsi": "001010100007504"
                     }
                 ],
                 "device-group": [
