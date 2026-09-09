@@ -27,8 +27,8 @@ configuration:
       name: gnb1        # Uniquely identify gNB within application
       globalRanId:
         plmnId:
-          mcc: 208        # Mobile Country Code
-          mnc: 93        # Mobile Network Code
+          mcc: "001"        # Mobile Country Code
+          mnc: "01"        # Mobile Network Code
         gNbId:
           bitLength: 24
           gNBValue: "001001"      # gNB id (3 bytes/hex: range 000000~FFFFFF)
@@ -36,8 +36,8 @@ configuration:
         - tac: 000001        # TAC (3 bytes/hex: range: 000000~FFFFFF)
           broadcastPlmnList:
             - plmnId:
-                mcc: 208
-                mnc: 93
+                mcc: "001"
+                mnc: "01"
               taiSliceSupportList:
                 - sst: 2
                   sd: 010205      # Slice Differentiator (3 bytes/hex)
@@ -57,7 +57,7 @@ configuration:
       execInParallel: true      # Run all subscribers in parallel
       stepTrigger: false      # Wait for trigger to move to next step
       gnbName: gnb1        # gNB used for this profile
-      startImsi: "208930100007520"    # First IMSI (used in sequence for each UE)
+      startImsi: "001010100007520"    # First IMSI (used in sequence for each UE)
       ueCount: 3        # Number of UEs
       perUserTimeout: 10
       defaultAs: "{{ ping_target }}"    # Default ICMP destination (for UPF traffic)
@@ -65,8 +65,8 @@ configuration:
       key: "5122250214c33e723a5dd523fc145fc0"
       sequenceNumber: "16f3b3f70fc2"
       plmnId:
-        mcc: 208
-        mnc: 93
+        mcc: "001"
+        mnc: "01"
       startiteration: iteration1
       iterations:
 
@@ -93,13 +93,13 @@ configuration:
     enable: false
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007520
+    startImsi: "001010100007520"
     ueCount: 1
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     opc: "981d464c7c52eb6e5036234984ad0bcf"
     key: "5122250214c33e723a5dd523fc145fc0"
     sequenceNumber: "16f3b3f70fc2"
@@ -109,13 +109,13 @@ configuration:
     enable: true
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007530
+    startImsi: "001010100007530"
     ueCount: 5
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     dataPktCount: 5
     opc: "981d464c7c52eb6e5036234984ad0bcf"
     key: "5122250214c33e723a5dd523fc145fc0"
@@ -126,13 +126,13 @@ configuration:
     enable: false
     execInParallel: false
     gnbName: gnb1
-    startImsi: 208930100007540
+    startImsi: "001010100007540"
     ueCount: 5
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     opc: "981d464c7c52eb6e5036234984ad0bcf"
     key: "5122250214c33e723a5dd523fc145fc0"
     sequenceNumber: "16f3b3f70fc2"
@@ -142,11 +142,11 @@ configuration:
     enable: false
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007550
+    startImsi: "001010100007550"
     ueCount: 5
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     opc: "981d464c7c52eb6e5036234984ad0bcf"
@@ -159,13 +159,13 @@ configuration:
     enable: false
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007560
+    startImsi: "001010100007560"
     ueCount: 5
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     opc: "981d464c7c52eb6e5036234984ad0bcf"
     key: "5122250214c33e723a5dd523fc145fc0"
     sequenceNumber: "16f3b3f70fc2"
@@ -175,13 +175,13 @@ configuration:
     enable: false
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007570
+    startImsi: "001010100007570"
     ueCount: 5
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     opc: "981d464c7c52eb6e5036234984ad0bcf"
     key: "5122250214c33e723a5dd523fc145fc0"
     sequenceNumber: "16f3b3f70fc2"
@@ -191,11 +191,11 @@ configuration:
     enable: false
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007580
+    startImsi: "001010100007580"
     ueCount: 5
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     defaultAs: "{{ ping_target }}"
     perUserTimeout: 100
     opc: "981d464c7c52eb6e5036234984ad0bcf"
@@ -207,11 +207,11 @@ configuration:
     enable: false
     gnbName: gnb1
     execInParallel: false
-    startImsi: 208930100007590
+    startImsi: "001010100007590"
     ueCount: 1
     plmnId:
-      mcc: 208
-      mnc: 93
+      mcc: "001"
+      mnc: "01"
     defaultAs: "{{ ping_target }}"
     opc: "981d464c7c52eb6e5036234984ad0bcf"
     key: "5122250214c33e723a5dd523fc145fc0"

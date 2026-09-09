@@ -88,7 +88,7 @@
 
 - name: reboot early to apply realtime kernel and boot-time DPDK settings
   ansible.builtin.reboot:
-    reboot_timeout: 300
+    reboot_timeout: "{{ dpdk_reboot_timeout | default(300) }}"
   become: true
   when: (rt_kernel_installed is defined and rt_kernel_installed is changed) or grub_cmdline_result.changed
 
