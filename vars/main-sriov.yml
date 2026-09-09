@@ -36,9 +36,7 @@ core:
     mode: dpdk        # Options: af_packet or dpdk
     # If mode set to 'dpdk':
     #    - make sure at least two VF devices are created out of 'data_iface'
-    #      and these devices are attached to vfio-pci driver;
-    #    - use 'sdcore-5g-values.yaml' for the default profile or
-    #      'sdcore-5g-values.yaml' (the radio profile now shares the standard core values).
+    #      and these devices are attached to vfio-pci driver.
     multihop_gnb: false      # set to true to override default N3 subnet
     default_upf:
       ip:
